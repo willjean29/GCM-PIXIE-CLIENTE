@@ -1,0 +1,133 @@
+.container-preview-img {
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-preview {
+    max-height: 100%;
+    max-width: 100%;
+    display: none;
+}
+
+.img-not-icon{
+    font-size: 5em;
+}
+
+.custom::after{
+    display: none;
+}
+
+.container-premio{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+}
+
+.close-container{
+    right: 18px;
+    position: absolute;
+    font-size: 2.5rem;
+}
+.close-container:focus,
+.close-container:active{
+    outline: none;
+}
+.close{
+    outline: none !important;
+}
+
+.invalid-feedback{
+    position: absolute;
+    bottom: -20px;
+}
+.progress-file{
+    width: 100%;
+    height: 30px;
+}
+
+.csv-icon,
+.fila{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.csv-icon i{
+    font-size: 2rem;
+}
+
+
+.section-padding{
+    padding-top: 160px !important;
+}
+
+.select-category{
+    color: #1641ff !important;
+}
+
+.title-business{
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+.input-file{
+    opacity: 1;
+}
+.input-file:active,
+.input-file:focus{
+    outline: none !important;
+}
+
+.p_60{
+    padding: 60px 0;
+}
+
+.limit-text{
+    display: -webkit-box;
+    /*Le indicamos a nuestro texto la oritentación que tendra */
+    -webkit-box-orient:vertical;
+    /* Aqui le estamos diciendo cuantas lineas de texto queremos que aparezcan */
+    -webkit-line-clamp: 3;
+    /* Y por ultimo ocultar las lineas que se salgan del texto */
+    overflow-y: hidden;
+    /* color: red; */
+    z-index: 1;
+}
+
+.title-page{
+    padding-left: 10px;
+    font-family: "Roboto", sans-serif;
+    font-size: 24px;
+    line-height: 36px;
+    color: #222222;
+    font-weight: bold;
+}
+
+.height-img{
+    height: 211.25px;
+}
+
+.img-table{
+    max-width: 100px;
+    height: 100px;
+}
+
+.section{
+    max-width: 80%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-gap: 3rem;
+    padding-top: 20px;
+}
+
+.title-prize{
+    background: #f8f8f8;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    width: 90%;
+    margin: 0 auto;
+}

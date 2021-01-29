@@ -1,0 +1,259 @@
+{{#extend 'styles'}}
+
+{{/extend}}
+   
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Concurso Simple</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="/admin">Inicio</a></li>
+              <li class="breadcrumb-item active">Concurso Perfil</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-3">
+
+            <!-- Profile Image -->
+            <div class="card card-primary card-outline">
+              <div class="card-body box-profile">
+                <div class="text-center">
+                  {{#if concurso.image}}
+                  <img class="profile-user-img img-fluid img-circle"
+                       src="{{concurso.image}}"
+                       alt="User profile picture">
+                  {{else}}
+                  <img class="profile-user-img img-fluid img-circle"
+                       src="/admin/admin-lte/img/competitio-simple.png"
+                       alt="User profile picture">
+                  {{/if}}
+
+                </div>
+                {{#if concurso.name}}
+                  <h3 class="profile-username text-center">{{concurso.name}}</h3>
+                {{/if}}
+                
+
+                <p class="text-muted text-center">Concurso Simple</p>
+
+                <ul class="list-group list-group-unbordered mb-3">
+                  <li class="list-group-item">
+                    {{#if concurso.fechaInicio}}
+                      <b>Fecha Innicio</b> <a class="float-right">{{fechaInicio}}</a>
+                    {{/if}}
+      
+                  </li>
+                  <li class="list-group-item">
+                    {{#if concurso.fechaFin}}
+                      <b>Fecha Fin</b> <a class="float-right">{{fechaFin}}</a>
+                    {{/if}}
+                  </li>
+                  <li class="list-group-item">
+                    {{#if concurso.estado}}
+                      <b>Estado</b> <a class="float-right">Activo</a>
+                    {{else}}
+                      <b>Estado</b> <a class="float-right">Inactivo</a>
+                    {{/if}}
+                    
+                  </li>
+                </ul>
+                {{#if existeCatalogoBusiness}}
+                  {{#if concurso.estado}}
+                    <button class="btn btn-primary btn-block" disabled id="btn-activar" data-id="{{concurso._id}}"><b>Activar</b></button>
+                  {{else}}
+                    <button class="btn btn-primary btn-block" id="btn-activar" data-id="{{concurso._id}}"><b>Activar</b></button>
+                  {{/if}}
+                {{else}}
+                  <button class="btn btn-primary btn-block" disabled id="btn-activar" data-id="{{concurso._id}}"><b>Activar</b></button>
+                {{/if}}
+                
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+            <!-- About Me Box -->
+            {{!-- <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">About Me</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <strong><i class="fas fa-book mr-1"></i> Education</strong>
+
+                <p class="text-muted">
+                  B.S. in Computer Science from the University of Tennessee at Knoxville
+                </p>
+
+                <hr>
+
+                <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
+
+                <p class="text-muted">Malibu, California</p>
+
+                <hr>
+
+                <strong><i class="fas fa-pencil-alt mr-1"></i> Skills</strong>
+
+                <p class="text-muted">
+                  <span class="tag tag-danger">UI Design</span>
+                  <span class="tag tag-success">Coding</span>
+                  <span class="tag tag-info">Javascript</span>
+                  <span class="tag tag-warning">PHP</span>
+                  <span class="tag tag-primary">Node.js</span>
+                </p>
+
+                <hr>
+
+                <strong><i class="far fa-file-alt mr-1"></i> Notes</strong>
+
+                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
+              </div>
+              <!-- /.card-body -->
+            </div> --}}
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+          <div class="col-md-9">
+            <div class="card">
+              <div class="card-header p-2">
+                <ul class="nav nav-pills">
+                  <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab"><i class="fas fa-info-circle mx-1"></i>Información</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab"><i class="fas fa-clipboard-check mx-1"></i>Acciones</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab"><i class="fas fa-id-badge mx-1"></i>Logo</a></li>
+                </ul>
+              </div><!-- /.card-header -->
+              <div class="card-body">
+                <div class="tab-content">
+                  <div class="active tab-pane" id="activity">
+                    <table class="table table-bordered">
+                      <thead>                  
+                        <tr>
+                          <th style=""><i class="fas fa-caret-square-down"></i></th>
+                          <th>Dato</th>
+                          <th>Caracteristicas</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><i class="fas fa-calendar-alt"></i></td>
+                          <th>Fecha Inicio</th>
+                          {{#if concurso.fechaInicio}}
+                            <td>{{fechaInicio}}</td>
+                          {{/if}}
+                        </tr>
+                        <tr>
+                          <td><i class="fas fa-calendar-alt"></i></td>
+                          <th>Fecha Fin</th>
+                          {{#if concurso.fechaFin}}
+                            <td>{{fechaFin}}</td>
+                          {{/if}}
+
+                        </tr>
+                        <tr>
+                          <td><i class="fas fa-building"></i></td>
+                          <th>Empresa</th>
+                          {{#if empresa.razonSocial}}
+                            <td>{{empresa.razonSocial}}</td>
+                          {{/if}}
+
+                        </tr>
+                        <tr>
+                          <td><i class="fas fa-users"></i></td>
+                          <th>Participantes</th>
+                            <td>{{empresa.clientes.length}}</td>
+                        </tr>
+                        <tr>
+                          <td><i class="fas fa-tasks"></i></td>
+                          <th>Parametro</th>
+                          {{#if concurso.reglas.parametro}}
+                            <td> S/ {{concurso.reglas.parametro}}</td>
+                          {{/if}}
+
+                        </tr>
+                        <tr>
+                          <td><i class="fas fa-circle"></i></i></td>
+                          <th>Puntos</th>
+                          {{#if concurso.reglas.puntos}}
+                            <td>{{concurso.reglas.puntos}}</td>
+                          {{/if}}
+
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <!-- /.tab-pane -->
+                  <div class="tab-pane" id="timeline">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title font-weight-bold">Acciones de Concurso</h5>
+                        <p class="card-text">Puede realizar estas acciones solo cuando el concurso no este activo o haya caducado</p>
+                        <div class="row justify-content-between">
+
+                          {{#if concurso.estado}}
+                            <button disabled class="btn btn-warning"><i class="fas fa-edit mx-1"></i>Editar Concurso</button>
+                          {{else}}
+                            <a href="/competition/simple/modificar" class="btn btn-warning"><i class="fas fa-edit mx-1"></i>Editar Concurso</a>
+                          {{/if}}
+                          
+                          {{#if concurso.estado}}
+                            <button disabled class="btn btn-danger"><i class="fas fa-trash-alt mx-1"></i>Eliminar Concurso</button>
+                          {{else}}
+                            <a href="#" class="btn btn-danger"><i class="fas fa-trash-alt mx-1"></i>Eliminar Concurso</a>
+                          {{/if}}
+                    
+                        </div>
+                      </div>
+                      <img src="https://blog.hotmart.com/blog/2018/02/BLOG_J%C3%B3venes-emprendedores-670x419.png" class="card-img-top" alt="...">
+                    </div>
+                  </div>
+                  <!-- /.tab-pane -->
+
+                  <div class="tab-pane" id="settings">
+                    <form class="form-horizontal" method="POST" id="form-avatar" enctype="multipart/form-data">
+                      <div class="input-group">
+                        <div class="custom-file">
+                          <input required type="file" class="custom-file-input" id="file-img" aria-describedby="inputGroupFileAddon04" name="image">
+                          <label class="custom-file-label" for="file-img" id="label-img">Ingresar Archivo</label>
+                        </div>
+                        <div class="input-group-append">
+                          <input type="hidden" name="dir" value="competition">
+                          <input type="hidden" name="url" value="/competition/simple/avatar">
+                          <button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04">Enviar</button>
+                        </div>
+                      </div>
+                    </form>
+                    <div class="card my-2 container-preview-img" id="container-preview-img">
+                      <img src="" class="img-preview" alt="avatar" id="preview-img">
+                      <i class="far fa-image img-not-icon" id="default-img"></i>
+                    </div>
+                  </div>
+                  <!-- /.tab-pane -->
+                </div>
+                <!-- /.tab-content -->
+              </div><!-- /.card-body -->
+            </div>
+            <!-- /.nav-tabs-custom -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+
+
+{{#extend 'scripts'}}
+
+{{/extend}}

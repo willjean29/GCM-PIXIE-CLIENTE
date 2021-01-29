@@ -1,0 +1,375 @@
+{{#extend 'styles'}}
+
+{{/extend}}
+   
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Información Personal</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="/admin">Inicio</a></li>
+              <li class="breadcrumb-item active">Perfil Administrador</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-3">
+
+            <!-- Profile Image -->
+            <div class="card card-primary card-outline">
+              <div class="card-body box-profile">
+                <div class="text-center">
+                  {{#if admin.image}}
+                    <img class="profile-user-img img-fluid img-circle"
+                       src="{{admin.image}}"
+                       alt="User profile picture">
+                  {{else}}
+                    <img class="profile-user-img img-fluid img-circle"
+                       src="/admin/admin-lte/img/avatar5.png"
+                       alt="User profile picture">
+                  {{/if}}
+
+                </div>
+                {{#if admin}}
+                  <h3 class="profile-username text-center">{{admin.names}}</h3>
+                {{/if}}
+                <p class="text-muted text-center">Administrador Registrado</p>
+
+                <ul class="list-group list-group-unbordered mb-3">
+                  <li class="list-group-item">
+                    {{#if admin}}
+                    <b>DNI</b> <a class="float-right">{{admin.dni}}</a>
+                    {{/if}}
+                  </li>
+                  <li class="list-group-item">
+                    {{#if admin.edad}}
+                      <b>Edad</b> <a class="float-right">{{admin.edad}}</a>
+                    {{else}}
+                      <b>Edad</b> <a class="float-right">--</a>
+                    {{/if}}
+                  </li>
+                  <li class="list-group-item">
+                    {{#if admin.genero}}
+                      <b>Género</b> <a class="float-right">{{admin.genero}}</a>
+                    {{else}}
+                      <b>Género</b> <a class="float-right">NN</a>
+                    {{/if}}
+                    
+                  </li>
+                </ul>
+
+                <a href="#" class="btn btn-primary btn-block"><b>Seguir</b></a>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+            <!-- About Me Box -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Sobre Mi</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <strong><i class="fas fa-book mr-1"></i>Cargo Empresarial</strong>
+
+                <p class="text-muted">
+                  {{admin.cargo}}
+                </p>
+
+                <hr>
+
+                <strong><i class="fas fa-map-marker-alt mr-1"></i>Ubicación</strong>
+
+                <p class="text-muted">{{admin.distrito}}, {{admin.departamento}}</p>
+
+                <hr>
+
+                {{!-- <strong><i class="far fa-file-alt mr-1"></i>Descripción</strong>
+
+                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p> --}}
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+          <div class="col-md-9">
+            <div class="card">
+              <div class="card-header p-2">
+                <ul class="nav nav-pills">
+                  <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab"><i class="fas fa-info-circle mx-1"></i>Información</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab"><i class="fas fa-user-edit mx-1"></i>Editar Perfil</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab"><i class="fas fa-user-circle mx-1"></i>Avatar</a></li>
+                </ul>
+              </div><!-- /.card-header -->
+              <div class="card-body">
+                <div class="tab-content">
+                  <div class="active tab-pane" id="activity">
+                    <table class="table">
+
+                      {{!-- <thead>
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">First</th>
+                          <th scope="col">Last</th>
+                          <th scope="col">Handle</th>
+                        </tr>
+                      </thead> --}}
+                      <tbody>
+                        <tr>
+                          <th scope="row"><i class="fa fa-credit-card"></i></th>
+                          <th>DNI</th>
+                          {{#if admin.dni}}
+                            <td>{{admin.dni}}</td>
+                          {{/if}}
+                        </tr>
+                        <tr>
+                          <th scope="row"><i class="fas fa-user"></i></th>
+                          <th>Nombres</th>
+                          {{#if admin}}
+                            <td>{{admin.names}}</td>
+                          {{/if}}
+
+                        </tr>
+                        <tr>
+                          <th scope="row"><i class="fas fa-user"></i></th>
+                          <th>Apellido Paterno</th>
+                           {{#if admin.lastNameP}}
+                            <td>{{admin.lastNameP}}</td>
+                          {{/if}}
+           
+                        </tr>
+                        <tr>
+                          <th scope="row"><i class="fas fa-user"></i></th>
+                          <th>Apellido Materno</th>
+                           {{#if admin.lastNameA}}
+                            <td>{{admin.lastNameA}}</td>
+                            
+                          {{/if}}
+    
+                        </tr>
+                        <tr>
+                          <th scope="row"><i class="fa fa-calendar"></i></th>
+                          <th>Fecha de Nacimiento</th>
+                          {{#if admin.fechaNacimiento}}
+                            <td>{{fechaNacimiento}}</td>
+                          {{else}}
+                            <td>-----</td>                            
+                          {{/if}}
+           
+                        </tr>
+                        <tr>
+                          <th scope="row"><i class="fas fa-mobile-alt"></i></th>
+                          <th>Telefono</th>
+                          {{#if admin.telefono}}
+                            <td>{{admin.telefono}}</td>
+                          {{else}}
+                            <td>-----</td>                            
+                          {{/if}}
+           
+                        </tr>
+                        <tr>
+                          <th scope="row"><i class="fa fa-envelope"></i></th>
+                          <th>Correo</th>
+                          {{#if admin.email}}
+                            <td>{{admin.email}}</td>
+                          {{else}}
+                            <td>-----</td>
+                          {{/if}}
+           
+                        </tr>
+                        <tr>
+                          <th scope="row"><i class="fa fa-map-marker"></i></th>
+                          <th>Dirección</th>
+                          {{#if admin.direccion}}
+                            <td>{{admin.direccion}}</td>
+                          {{else}}
+                            <td>-----</td>
+                          {{/if}}
+           
+                        </tr>
+                        <tr>
+                          <th scope="row"><i class="fa fa-map-marker"></i></th>
+                          <th>Departamento</th>
+                          {{#if admin.departamento}}
+                            <td>{{admin.departamento}}</td>
+                          {{else}}
+                            <td>-----</td>
+                          {{/if}}
+           
+                        </tr>    
+                        <tr>
+                          <th scope="row"><i class="fa fa-map-marker"></i></th>
+                          <th>Provincia</th>
+                          {{#if admin.provincia}}
+                            <td>{{admin.provincia}}</td>
+                          {{else}}
+                            <td>-----</td>
+                          {{/if}}
+           
+                        </tr>  
+                        <tr>
+                          <th scope="row"><i class="fa fa-map-marker"></i></th>
+                          <th>Distrito</th>
+                          {{#if admin.distrito}}
+                            <td>{{admin.distrito}}</td>
+                          {{else}}
+                            <td>-----</td>
+                          {{/if}}
+           
+                        </tr>                                                                  
+                      </tbody>
+                    </table>
+                  </div>
+                  <!-- /.tab-pane -->
+                  <div class="tab-pane" id="timeline">
+
+                    <!-- form start -->
+                    <form role="form" id="form-admin-modificar" method="POST"> 
+                        <div class="card-body">
+                            <div class="form-row">
+                              <div class="form-group col-md-6">
+                                  <label for="fecha-nacimiento">Fecha de Nacimiento</label>
+                                    {{#if fechaNacimiento}}
+                                      <input type="text" class="form-control fecha" id="fecha-nacimiento" name="fechaNacimiento" value="{{fechaNacimiento}}">
+                                    {{else}}
+                                      <input type="text" class="form-control fecha" id="fecha-nacimiento" name="fechaNacimiento">
+                                    {{/if}}
+
+                              </div>
+                              <div class="form-group col-md-6">
+                                  <label for="admin-genero">Género</label>
+                                  <select name="genero" id="admin-genero" class="form-control">
+                                    {{#selectGenero admin.genero}}
+                                      <option value="" disabled selected>-- Seleccionar --</option>
+                                      <option value="Masculino">Masculino</option>
+                                      <option value="Femenino">Femenino</option>
+                                    {{/selectGenero}}
+                                  </select>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="cargo">Cargo de Ocupación</label>
+                                {{#if admin.cargo}}
+                                  <input type="text" class="form-control" id="cargo" placeholder="" name="cargo" value="{{admin.cargo}}">
+                                {{else}}
+                                  <input type="text" class="form-control" id="cargo" placeholder="" name="cargo">
+                                {{/if}}                                
+
+                            </div>                            
+                            <div class="form-group">
+                                <label for="direccion">Dirección</label>
+                                {{#if admin.direccion}}
+                                  <input type="text" class="form-control" id="direccion" placeholder="1234 Main St" name="direccion" value="{{admin.direccion}}">
+                                {{else}}
+                                  <input type="text" class="form-control" id="direccion" placeholder="1234 Main St" name="direccion">
+                                {{/if}}                                
+
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                  <label for="telefono">Telefono</label>
+                                  {{#if admin.telefono}}
+                                    <input type="text" class="form-control" id="telefono" name="telefono" value="{{admin.telefono}}">
+                                  {{else}}
+                                    <input type="text" class="form-control" id="telefono" name="telefono">
+                                  {{/if}}
+
+                                </div>
+                                <div class="form-group col-md-6">
+                                  <label for="celular">Celular</label>
+                                  {{#if admin.celular}}
+                                    <input type="text" class="form-control" id="celular" name="celular" value="{{admin.celular}}">
+                                  {{else}}
+                                    <input type="text" class="form-control" id="celular" name="celular">
+                                  {{/if}}                                
+
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                  <label for="departamento">Departamento</label>
+                                  {{#if admin.departamento}}
+                                    <input type="text" class="form-control" id="departamento" name="departamento" value="{{admin.departamento}}">
+                                  {{else}}
+                                    <input type="text" class="form-control" id="departamento" name="departamento">
+                                  {{/if}}                                
+
+                                </div>
+                                <div class="form-group col-md-4">
+                                  <label for="provincia">Provincia</label>
+                                  {{#if admin.provincia}}
+                                    <input type="text" class="form-control" id="provincia" name="provincia" value="{{admin.provincia}}">
+                                  {{else}}
+                                    <input type="text" class="form-control" id="provincia" name="provincia">
+                                  {{/if}}                                  
+
+                                </div>
+                                  <div class="form-group col-md-4">
+                                  <label for="distrito">Distrito</label>
+                                  {{#if admin.distrito}}
+                                    <input type="text" class="form-control" id="distrito" name="distrito" value="{{admin.distrito}}">
+                                  {{else}}
+                                    <input type="text" class="form-control" id="distrito" name="distrito">
+                                  {{/if}}                                  
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-end">
+                            <button type="submit" class="btn btn-primary">Actualizar</button>
+                        </div>
+                        
+                    </form>
+
+                  </div>
+                  <!-- /.tab-pane -->
+
+                  <div class="tab-pane" id="settings">
+                    <form class="form-horizontal" action="/admin/avatar" method="POST" id="form-avatar" enctype="multipart/form-data">
+                      <div class="input-group">
+                        <div class="custom-file">
+                          <input required type="file" class="custom-file-input" id="file-img" aria-describedby="inputGroupFileAddon04" name="image">
+                          <label class="custom-file-label" for="file-img" id="label-img">Ingresar Archivo</label>
+                        </div>
+                        <div class="input-group-append">
+                          <input type="hidden" name="dir" value="admin">
+                          <input type="hidden" name="url" value="/admin/avatar">
+                          <button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04">Enviar</button>
+                        </div>
+                      </div>
+                    </form>
+                    <div class="card my-2 container-preview-img" id="container-preview-img">
+                      <img src="" class="img-preview" alt="avatar" id="preview-img">
+                      <i class="far fa-image img-not-icon" id="default-img"></i>
+                    </div>
+                  </div>
+                  <!-- /.tab-pane -->
+                </div>
+                <!-- /.tab-content -->
+              </div><!-- /.card-body -->
+            </div>
+            <!-- /.nav-tabs-custom -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+
+
+{{#extend 'scripts'}}
+
+{{/extend}}

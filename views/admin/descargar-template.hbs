@@ -1,0 +1,173 @@
+{{#extend 'styles'}}
+    <link rel="stylesheet" href="/admin/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="/admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+{{/extend}}   
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Template para Registro de Ventas</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="/admin">Inicio</a></li>
+              <li class="breadcrumb-item active">Template</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-12">
+
+          <div class="card col-12">
+            <div class="card-header d-flex justify-content-between align-items-center custom">
+                <h3 class="card-title">Lista de ventas registradas</h3>
+                <div class="container-button">
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    <i class="fas fa-upload mx-1"></i>Subir Data
+                  </button>
+                  <a href="/uploads/documents/Template.csv" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Desacargue el template para registrar sus ventas "><i class="fas fa-download mx-1"></i>Descargar</a>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table id="tabla-archivos" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>Icono</th>
+                  <th>Nombre</th>
+                  <th>Estado</th>
+                  <th>Tipo</th>
+                  <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {{#if filesVentas}}
+                      {{#each filesVentas}}
+                        <tr>
+                          <td class="csv-icon"> 
+                            <i class="fas fa-file-csv"></i>
+                          </td>
+                          <td>{{name}}</td>
+                          {{#if estado}}
+                            <td class="text-center">
+                              <a href="#" data-toggle="tooltip" data-placement="top" title="Archivo Cargado">
+                                <i class="fas fa-user-check text-success"></i>
+                              </a>
+                            </td>
+                          {{else}}
+                            <td class="text-center">
+                              <a href="#" data-toggle="tooltip" data-placement="top" title="Archivo no Cargado">
+                                <i class="fas fa-user-times text-danger"></i>
+                              </a>
+                            </td>
+                          {{/if}}
+                          <td>Registro de Ventas</td>
+                          <td>
+                            {{#if estado}}
+                              <button data-file="{{_id}}" class="btn btn-warning btn-carga" data-toggle="tooltip" data-placement="top" title="Procesar los datos del archivo" id="btn-cargar" disabled><i data-file="{{_id}}" class="fas fa-power-off btn-carga"></i></button>
+                            {{else}}
+                              <button data-file="{{_id}}" class="btn btn-warning btn-carga" data-toggle="tooltip" data-placement="top" title="Procesar los datos del archivo" id="btn-cargar"><i data-file="{{_id}}" class="fas fa-power-off btn-carga"></i></button>
+                            {{/if}}
+                            <a href="/file/ventas/{{_id}}" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Ver detalles del archivo"><i class="fas fa-eye"></i></a>
+                            {{#if estado}}
+                            {{!-- no se puede eliminar --}}
+                            {{else}}
+                              <button data-file="{{_id}}" class="btn btn-danger eliminar-file" data-toggle="tooltip" data-placement="top" title="Eliminar Registro"><i data-file="{{_id}}" class="fas fa-trash-alt eliminar-file"></i></button>
+                            {{/if}}
+                          </td>
+                        </tr>
+                      {{/each}}
+                    {{/if}}
+
+                </tbody>
+                <tfoot>
+                <tr>
+                  <th>Icono</th>
+                  <th>Nombre</th>
+                  <th>Estado</th>
+                  <th>Tipo</th>
+                  <th>Acciones</th>
+                </tr>
+                </tfoot>
+              </table>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>
+    <!-- /.content -->
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Registrar Clientes</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="tab-pane" id="settings">
+              <form class="form-horizontal"  method="POST" id="form-file-csv" enctype="multipart/form-data">
+                <div class="input-group">
+                  <div class="custom-file">
+                    <input required type="file" class="custom-file-input" id="file-csv" aria-describedby="btn-enviar-file" name="csv">
+                    <label class="custom-file-label" for="file-csv" id="label-csv">Ingresar Archivo</label>
+                  </div>
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit" id="btn-enviar-file">Enviar</button>
+                  </div>
+                </div>
+              </form>
+              <div class="card my-2 container-preview-img" id="container-preview-img">
+                <img src="" class="img-preview" alt="avatar" id="preview-img">
+                <i class="fas fa-file-csv img-not-icon" id="default-img"></i>
+              </div>
+              <progress max="100" value="0" class="progress-file" id="progress-bar-file"></progress>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+{{#extend 'scripts'}}
+    <!-- DataTables -->
+    <script src="/admin/plugins/datatables/jquery.dataTables.js"></script>
+    <script src="/admin/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+    <script src="/admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="/admin/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script>
+    $(function () {
+        $('#tabla-archivos').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+            'language' : {
+                paginate: {
+                  next: 'Siguiente',
+                  previous: 'Anterior',
+                  last: 'Último',
+                  first: 'Primero' 
+                },
+                info: "Mostrando _START_ a _END_ de _TOTAL_ resultados",
+                emptyTable: 'No hay registro',
+                infoempty: '0 Registro',
+                search: 'Buscar: ',
+            }
+        });
+    });
+    </script>
+{{/extend}}
